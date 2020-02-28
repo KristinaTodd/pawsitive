@@ -46,7 +46,7 @@ export class PostsController extends BaseController {
 
   async create(req, res, next) {
     try {
-      req.body.creator = req.userInfo.email;
+      req.body.creatorEmail = req.userInfo.email;
       let data = await postsService.create(req.body)
       res.status(201).send(data);
     } catch (error) {
@@ -56,7 +56,7 @@ export class PostsController extends BaseController {
 
   async edit(req, res, next) {
     try {
-      req.body.creator = req.userInfo.email
+      req.body.creatorEmail = req.userInfo.email
       let data = await postsService.edit(req.params.id, req.body, req.userInfo.email)
       res.status(202).send(req.params.id, req.body)
     } catch (error) {
