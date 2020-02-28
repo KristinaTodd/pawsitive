@@ -1,12 +1,77 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <h1>Welcome to Your Vue.js App</h1>
+    <div class="container">
+      <div v-if="$auth.isAuthenticated" class="loggedIn row">
+        <!-- Button trigger modal -->
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-toggle="modal"
+          data-target="#new-post"
+        >New Post</button>
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="new-post"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="modelTitleId"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title">Create a Post</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form>
+                <div class="modal-body">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <h5>Photo:</h5>
+                      <input placeholder="Image URL..." type="url" name="image" id="image" />
+                    </div>
+                    <div class="row">
+                      <h5>Name:</h5>
+                      <input
+                        placeholder="Give your photo a name!"
+                        type="text"
+                        name="name"
+                        id="name"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <post />
+      <post />
+      <post />
+      <post />
+      <post />
+      <post />
+    </div>
   </div>
 </template>
 
 <script>
+import Post from "@/components/posts";
 export default {
-  name: "home"
+  name: "home",
+  components: {
+    Post
+  }
 };
 </script>

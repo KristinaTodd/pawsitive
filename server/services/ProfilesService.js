@@ -1,4 +1,5 @@
 import { dbContext } from "../db/DbContext";
+import { UnAuthorized } from "../utils/Errors";
 
 // Private Methods
 
@@ -42,6 +43,7 @@ function sanitizeBody(body) {
 }
 
 class ProfileService {
+
   /**
    * Provided an array of user emails will return an array of user profiles with email picture and name
    * @param {String[]} emails Array of email addresses to lookup users by
@@ -83,5 +85,15 @@ class ProfileService {
     );
     return profile;
   }
+  async delete(id) {
+    let profile = await dbContext.Profile.findById(id)
+    if (profile.id != id) {
+      throw new UnAuthorized()
+    }
+    await dbContext.Profile.findByIdAndDelete(id)
+  }
+
 }
+
+
 export const profilesService = new ProfileService();
