@@ -42,6 +42,7 @@ function sanitizeBody(body) {
 }
 
 class ProfileService {
+
   /**
    * Provided an array of user emails will return an array of user profiles with email picture and name
    * @param {String[]} emails Array of email addresses to lookup users by
@@ -83,5 +84,11 @@ class ProfileService {
     );
     return profile;
   }
+  async delete(id, email) {
+    throw new Error("Method not implemented.");
+  }
+
 }
+
+
 export const profilesService = new ProfileService();
