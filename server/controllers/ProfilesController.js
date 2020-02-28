@@ -2,8 +2,8 @@ import express from "express";
 import BaseController from "../utils/BaseController";
 import auth0Provider from "@bcwdev/auth0Provider";
 import { profilesService } from "../services/ProfilesService";
-import { postsService } from "../services/PostsService";
-import { commentsService } from "../services/CommentsService"
+import { postsService } from "../services/PostsService.js";
+import { commentsService } from "../services/CommentsService.js"
 
 export class ProfilesController extends BaseController {
 
@@ -47,7 +47,7 @@ export class ProfilesController extends BaseController {
   }
   async edit(req, res, next) {
     try {
-      req.body.creatorId = req.user.sub;
+      req.body.creatorId = req.userInfo.sub;
       res.send(req.body);
     } catch (error) {
       next(error);
@@ -55,7 +55,7 @@ export class ProfilesController extends BaseController {
   }
   async delete(req, res, next) {
     try {
-      await profilesService.delete(req.params.id, req.userInfo.email)
+      await profilesService.delete(req.params.id)
     } catch (error) {
       next(error)
     }

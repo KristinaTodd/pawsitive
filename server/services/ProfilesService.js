@@ -1,4 +1,5 @@
 import { dbContext } from "../db/DbContext";
+import { UnAuthorized } from "../utils/Errors";
 
 // Private Methods
 
@@ -84,8 +85,12 @@ class ProfileService {
     );
     return profile;
   }
-  async delete(id, email) {
-    throw new Error("Method not implemented.");
+  async delete(id) {
+    let profile = await dbContext.Profile.findById(id)
+    if (profile.id != id) {
+      throw new UnAuthorized()
+    }
+    await dbContext.Profile.findByIdAndDelete(id)
   }
 
 }

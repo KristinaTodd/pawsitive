@@ -1,6 +1,6 @@
 import express from "express";
 import BaseController from "../utils/BaseController";
-import { commentsService } from "../services/CommentsService";
+import { commentsService } from "../services/CommentsService.js";
 import auth0Provider from "@bcwdev/auth0Provider";
 
 export class CommentsController extends BaseController {
@@ -22,7 +22,7 @@ export class CommentsController extends BaseController {
     }
   }
 
-  async getPostById(req, res, next) {
+  async getCommentById(req, res, next) {
     try {
       let data = await commentsService.getById(req.params.id)
       res.send(data)
@@ -32,7 +32,7 @@ export class CommentsController extends BaseController {
   }
   async create(req, res, next) {
     try {
-      req.body.creator = req.user.email;
+      req.body.creator = req.userInfo.email;
       res.status(201).send(req.body);
     } catch (error) {
       next(error);
@@ -41,7 +41,7 @@ export class CommentsController extends BaseController {
 
   async edit(req, res, next) {
     try {
-      req.body.creator = req.user.email
+      req.body.creator = req.userInfo.email
       res.status(202).send(req.params.id, req.body)
     } catch (error) {
       next(error)
