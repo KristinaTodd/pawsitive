@@ -47,7 +47,7 @@ export class ProfilesController extends BaseController {
   }
   async edit(req, res, next) {
     try {
-      req.body.creatorId = req.userInfo.sub;
+      req.body.creatorEmail = req.userInfo.email
       res.send(req.body);
     } catch (error) {
       next(error);
