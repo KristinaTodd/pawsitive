@@ -33,7 +33,8 @@ export class CommentsController extends BaseController {
   async create(req, res, next) {
     try {
       req.body.creator = req.userInfo.email;
-      res.status(201).send(req.body);
+      let data = await commentsService.create(req.body)
+      res.status(201).send(data);
     } catch (error) {
       next(error);
     }
