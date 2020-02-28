@@ -41,6 +41,17 @@ export default new Vuex.Store({
     removeComment(state, id) {
       state.comments = state.comments.filter(c => c.id != id)
     },
+    editProfile(state, updatedProfile, id) {
+      state.profile = updatedProfile
+    },
+    editComment(state, updatedComment, id) {
+      state.comments = state.comments.filter(p => p.id != id);
+      state.comments.push(updatedComment)
+    },
+    editPost(state, updatedPost, id) {
+      state.posts = state.posts.filter(p => p.id != id);
+      state.posts.push(updatedPost)
+    },
   },
   actions: {
     setBearer({ }, bearer) {
@@ -57,10 +68,10 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    async editProfile({ commit, dispatch }, update) {
+    async editProfile({ commit, dispatch }, update, id) {
       try {
-        let res = await api.put("update");
-        commit("setPosts", res.data)
+        let res = await api.put(id, update);
+        commit("editProfile", res.data)
       } catch (error) { console.error(error); }
     },
     async getPosts({ commit, dispatch }) {
@@ -82,6 +93,13 @@ export default new Vuex.Store({
     },
     setActivePost({ commit }, post) {
       commit("setActivePost", post)
+    },
+    async editPost({ commit, dispatch }, update, id) {
+      try {
+        let res = await api.put(update, id);
+        let updatedPost = res.data
+        commit("editPosts", updatedPost, id)
+      } catch (error) { console.error(error); }
     },
     async deletePost({ commit, dispatch }, postId) {
       try {
@@ -121,5 +139,12 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
+    async editComment({ commit, dispatch }, update, id) {
+      try {
+        let res = await api.put(update, id);
+        let updatedComment = res.data
+        commit("editComments", updatedComment)
+      } catch (error) { console.error(error); }
+    }
   }
 });
