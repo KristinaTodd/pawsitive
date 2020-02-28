@@ -27,12 +27,18 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <form>
+              <form @submit.prevent="createPost">
                 <div class="modal-body">
                   <div class="container-fluid">
                     <div class="row">
                       <h5>Photo:</h5>
-                      <input placeholder="Image URL..." type="url" name="image" id="image" />
+                      <input
+                        placeholder="Image URL..."
+                        type="url"
+                        name="image"
+                        id="image"
+                        v-model="newPost.imgUrl"
+                      />
                     </div>
                     <div class="row">
                       <h5>Name:</h5>
@@ -41,6 +47,7 @@
                         type="text"
                         name="name"
                         id="name"
+                        v-model="newPost.name"
                       />
                     </div>
                   </div>
@@ -69,9 +76,19 @@
 <script>
 import Post from "@/components/posts";
 export default {
-  name: "home",
+  name: "createPost",
+  data() {
+    return {
+      newPost: {}
+    };
+  },
   components: {
     Post
+  },
+  methods: {
+    createPost() {
+      this.$store.dispatch("addPost", this.newPost);
+    }
   }
 };
 </script>
