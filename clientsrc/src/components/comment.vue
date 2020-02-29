@@ -1,7 +1,10 @@
 <template>
   <li>
     {{commentData.content}} - {{commentData.creatorEmail}}
-    <button @click="deleteComment">Delete</button>
+    <button
+      v-if="commentData.creatorEmail == activeProfile.email"
+      @click="deleteComment"
+    >Delete</button>
   </li>
 </template>
 
@@ -12,6 +15,11 @@ export default {
     deleteComment() {
       debugger;
       this.$store.dispatch("deleteComment", this.commentData.id);
+    }
+  },
+  computed: {
+    activeProfile() {
+      return this.$store.state.profile;
     }
   },
   props: ["commentData", "commentIndex"]
