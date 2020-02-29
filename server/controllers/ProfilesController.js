@@ -48,7 +48,8 @@ export class ProfilesController extends BaseController {
   async edit(req, res, next) {
     try {
       req.body.creatorEmail = req.userInfo.email
-      res.send(req.body);
+      let data = await profilesService.updateProfile(req.params.id, req.body)
+      res.send(data);
     } catch (error) {
       next(error);
     }
