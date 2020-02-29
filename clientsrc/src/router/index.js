@@ -6,6 +6,7 @@ import Home from "../views/Home.vue";
 import Profile from "../views/Profile.vue";
 import { authGuard } from "@bcwdev/auth0-vue";
 
+
 Vue.use(VueRouter);
 
 const routes = [
