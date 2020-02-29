@@ -16,6 +16,18 @@
         />
       </ul>
     </div>
+    <div class="col-12">
+      <form action @submit.prevent="addComment">
+        <input
+          type="text"
+          placeholder="Enter Comment..."
+          name="comment"
+          id="comment"
+          v-model="newComment.content"
+        />
+        <button type="submit" class="btn btn-sm btn-info">Post!</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -23,6 +35,12 @@
 import Comment from "../components/comment";
 export default {
   name: "PostDetails",
+
+  data() {
+    return {
+      newComment: {}
+    };
+  },
   mounted() {
     if (!this.$store.state.posts.length) {
       this.$store.dispatch("getPostById", this.$route.params.postId);
@@ -44,6 +62,18 @@ export default {
     },
     details() {
       return this.$store.state.activePost;
+    }
+  },
+  methods: {
+    addComment() {
+      let data = {
+        postId: this.$route.params.postId,
+        profileId: this.details.profileId,
+        content: this.newComment.content
+      };
+      // this.newComment.postId = this.post.id;
+      // this.newComment.profileId = this.profile.id;
+      this.$store.dispatch("addComment", data);
     }
   }
 };
