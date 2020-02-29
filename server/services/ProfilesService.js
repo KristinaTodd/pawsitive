@@ -78,9 +78,10 @@ class ProfileService {
 ​    */
   async updateProfile(user, body) {
     let update = sanitizeBody(body);
+    delete update.name
     let profile = await dbContext.Profile.findOneAndUpdate(
       { email: user.email },
-      { $set: update },
+      update,
       { runValidators: true, setDefaultsOnInsert: true, new: true }
     );
     return profile;
