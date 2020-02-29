@@ -15,22 +15,11 @@
       </div>
 
       <div class="col-12">
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-toggle="modal"
-          data-target="#exampleModal"
-          data-whatever="@mdo"
-        >Change Picture</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+          data-whatever="@mdo">Change Picture</button>
 
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -108,15 +97,14 @@
 
     }
   }
-};
 </script>
 
 <style scoped>
-img {
-  max-width: 200px;
-}
+  img {
+    max-width: 200px;
+  }
 
-.name {
-  font-family: "Pacifico";
-}
+  .name {
+    font-family: "Pacifico";
+  }
 </style>
