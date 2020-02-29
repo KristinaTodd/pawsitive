@@ -40,12 +40,29 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-12">
+        <hr>
+      </div>
+
+      <div class="col-12 name">
+        <h3>Your Posts</h3>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <post v-for="(postObj, index) in posts" :key="postObj.id" :postData="postObj" :postIndex="index" />
+    </div>
   </div>
 </template>
 
 <script>
+  import Post from "@/components/posts"
+
   export default {
     name: "Profile",
+    mounted() {
+      this.$store.dispatch("getPostsByProfileId", this.$route.params.id)
+    },
     data() {
       return {
         update: {
@@ -56,17 +73,20 @@
     computed: {
       profile() {
         return this.$store.state.profile;
+      },
+      posts() {
+        return this.$store.state.posts;
       }
+    },
+    components: {
+      Post
     },
     methods: {
       editProfile() {
-        debugger
         let data = {
           profileId: this.profile.id,
           picture: this.update.picture
         }
-
-
         this.$store.dispatch("editProfile", data)
       }
     }
