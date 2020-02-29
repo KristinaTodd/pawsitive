@@ -54,7 +54,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
                 </div>
               </form>
             </div>
@@ -63,12 +63,12 @@
       </div>
     </div>
     <div class="row justify-content-center">
-      <post />
-      <post />
-      <post />
-      <post />
-      <post />
-      <post />
+      <post
+        v-for="(postObj, index) in posts"
+        :key="postObj.id"
+        :postData="postObj"
+        :postIndex="index"
+      />
     </div>
   </div>
 </template>
@@ -77,16 +77,30 @@
 import Post from "@/components/posts";
 export default {
   name: "createPost",
+  mounted() {
+    this.$store.dispatch("getPosts");
+  },
   data() {
     return {
-      newPost: {}
+      newPost: {
+        profileId: ""
+      }
     };
+  },
+  computed: {
+    profile() {
+      return this.$store.state.profile;
+    },
+    posts() {
+      return this.$store.state.posts;
+    }
   },
   components: {
     Post
   },
   methods: {
     createPost() {
+      this.newPost.profileId = this.profile.id;
       this.$store.dispatch("addPost", this.newPost);
     }
   }
