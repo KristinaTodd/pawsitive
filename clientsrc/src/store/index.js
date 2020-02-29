@@ -91,6 +91,15 @@ export default new Vuex.Store({
         router.push({ name: "Home" });
       }
     },
+    async getPostsByProfileId({ commit, dispatch }, profileId) {
+      try {
+
+        let res = await api.get("profile/" + profileId + "/posts");
+        commit("setPosts", res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
     setActivePost({ commit }, post) {
       commit("setActivePost", post)
     },

@@ -17,12 +17,14 @@ const routes = [
     component: Home
   },
   {
+
     path: "/:postId",
     name: "PostDetails",
     component: PostDetails
   },
-  {
+  }
     path: "/profile",
+
     name: "Profile",
     component: Profile,
     beforeEnter: authGuard
