@@ -5,6 +5,7 @@ import Home from "../views/Home.vue";
 // @ts-ignore
 import Profile from "../views/Profile.vue";
 import { authGuard } from "@bcwdev/auth0-vue";
+import PostDetails from "../views/PostDetails.vue"
 
 
 Vue.use(VueRouter);
@@ -14,6 +15,11 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home
+  },
+  {
+    path: "/:postId",
+    name: "PostDetails",
+    component: PostDetails
   },
   {
     path: "/profile",
