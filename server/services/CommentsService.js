@@ -30,7 +30,7 @@ class CommentsService {
   async edit(id, update, email) {
     let comment = await dbContext.Comment.findById(id)
     // @ts-ignore
-    if (comment.creator != email) {
+    if (comment.creatorEmail != email) {
       throw new UnAuthorized()
     }
 
@@ -43,7 +43,7 @@ class CommentsService {
   async delete(id, email) {
     let comment = await dbContext.Comment.findById(id)
     // @ts-ignore
-    if (comment.creator != email) {
+    if (comment.creatorEmail != email) {
       throw new UnAuthorized()
     }
     await dbContext.Comment.findByIdAndDelete(comment.id)
