@@ -133,7 +133,7 @@ export default new Vuex.Store({
     },
     async deleteComment({ commit, dispatch }, commentId) {
       try {
-        let res = await api.delete(commentId);
+        let res = await api.delete("/comments/" + commentId);
         commit("removeComment", commentId);
       } catch (error) {
         console.error(error);
