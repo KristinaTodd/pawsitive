@@ -16,12 +16,12 @@ class CommentsService {
     return comment;
   }
 
-  async  getCommentsByPostId(postId) {
-    return await dbContext.Comment.find({ postId })
+  async  getCommentsByPostId(id) {
+    return await dbContext.Comment.find({ postId: id })
   }
 
-  async  getCommentsByProfileId(profileId) {
-    return await dbContext.Comment.find({ profileId })
+  async  getCommentsByProfileId(id) {
+    return await dbContext.Comment.find({ profileId: id })
   }
 
   async create(body) {
