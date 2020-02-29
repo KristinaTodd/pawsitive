@@ -42,7 +42,7 @@ export default new Vuex.Store({
       state.comments = state.comments.filter(c => c.id != id)
     },
     editProfile(state, updatedProfile, id) {
-      state.profile = updatedProfile
+      state.profile.picture = updatedProfile
     },
     editComment(state, updatedComment, id) {
       state.comments = state.comments.filter(p => p.id != id);
@@ -68,9 +68,9 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    async editProfile({ commit, dispatch }, update, id) {
+    async editProfile({ commit, dispatch }, update) {
       try {
-        let res = await api.put(id, update);
+        let res = await api.put("profile/" + update.profileId, update);
         commit("editProfile", res.data)
       } catch (error) { console.error(error); }
     },
