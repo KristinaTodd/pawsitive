@@ -47,7 +47,8 @@ export class CommentsController extends BaseController {
   async edit(req, res, next) {
     try {
       req.body.creatorEmail = req.userInfo.email
-      res.status(202).send(req.params.id, req.body)
+      let data = await commentsService.edit(req.params.id, req.body, req.userInfo.email)
+      res.status(202).send(data)
     } catch (error) {
       next(error)
     }
