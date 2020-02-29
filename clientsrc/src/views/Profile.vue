@@ -2,19 +2,35 @@
   <div class="about text-center">
     <div class="row">
       <div class="col-12">
-        <h1><span class="name">Welcome,</span> {{ profile.name }}</h1>
+        <h1>
+          <span class="name">Welcome,</span>
+          {{ profile.name }}
+        </h1>
       </div>
-      <div class="col-12"><img class="rounded" :src="profile.picture" alt="" /></div>
+      <div class="col-12">
+        <img class="rounded" :src="profile.picture" alt />
+      </div>
       <div class="col-12">
         <p>{{ profile.email }}</p>
       </div>
 
       <div class="col-12">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-          data-whatever="@mdo">Change Picture</button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#exampleModal"
+          data-whatever="@mdo"
+        >Change Picture</button>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -27,7 +43,7 @@
                 <form @submit.prevent="editProfile">
                   <div class="form-group">
                     <label for="imgURL" class="col-form-label">New Picture:</label>
-                    <input type="text" class="form-control" id="imgURL" v-model="update.picture">
+                    <input type="text" class="form-control" id="imgURL" v-model="update.picture" />
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -89,16 +105,18 @@
         }
         this.$store.dispatch("editProfile", data)
       }
+
     }
-  };
+  }
+};
 </script>
 
 <style scoped>
-  img {
-    max-width: 200px;
-  }
+img {
+  max-width: 200px;
+}
 
-  .name {
-    font-family: "Pacifico";
-  }
+.name {
+  font-family: "Pacifico";
+}
 </style>
