@@ -88,6 +88,7 @@
     },
     methods: {
       editProfile() {
+        debugger
         let data = {
           profileId: this.profile.id,
           picture: this.update.picture
