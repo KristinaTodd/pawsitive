@@ -30,7 +30,7 @@ class PostsService {
   async edit(id, update, email) {
     let post = await dbContext.Post.findById(id)
     // @ts-ignore
-    if (post.creator != email) {
+    if (post.creatorEmail != email) {
       throw new UnAuthorized()
     }
 
@@ -43,7 +43,7 @@ class PostsService {
   async delete(id, email) {
     let post = await dbContext.Post.findById(id)
     // @ts-ignore
-    if (post.creator != email) {
+    if (post.creatorEmail != email) {
       throw new UnAuthorized()
     }
     await dbContext.Post.findByIdAndDelete(post.id)
