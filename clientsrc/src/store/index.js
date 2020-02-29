@@ -127,8 +127,10 @@ export default new Vuex.Store({
     },
     async addComment({ commit, dispatch }, comment) {
       try {
-        let res = await api.post("Comments", comment);
-        dispatch("getComments");
+        debugger
+        let res = await api.post("/comments", comment);
+        let resu = await api.get("Posts/" + comment.postId + "/comments");
+        commit("setComments", resu.data);
       } catch (error) { console.error(error); }
     },
     async deleteComment({ commit, dispatch }, commentId) {
