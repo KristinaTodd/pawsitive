@@ -112,7 +112,7 @@ export default new Vuex.Store({
     },
     async deletePost({ commit, dispatch }, postId) {
       try {
-        let res = await api.delete(postId);
+        let res = await api.delete("/posts/" + postId);
         commit("removePost", postId);
         commit("setActivePost", {});
       } catch (error) {
@@ -136,7 +136,6 @@ export default new Vuex.Store({
     },
     async addComment({ commit, dispatch }, comment) {
       try {
-        debugger
         let res = await api.post("/comments", comment);
         let resu = await api.get("Posts/" + comment.postId + "/comments");
         commit("setComments", resu.data);

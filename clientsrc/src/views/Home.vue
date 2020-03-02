@@ -1,8 +1,7 @@
 <template>
-  <div class="home">
-    <div class="row d-flex">
-      <div class="col-5"></div>
-      <div class="col-2 justify-content-between">
+  <div class="home container-fluid ">
+    <div class=" row">
+      <div class="col-2 justify-content-center">
         <div v-if="$auth.isAuthenticated" class="loggedIn row">
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-secondary m-1" data-toggle="modal" data-target="#new-post">New
@@ -43,7 +42,6 @@
           </div>
         </div>
       </div>
-      <div class="col-5"></div>
     </div>
     <div class="row justify-content-center">
       <div class="card-columns d-block">

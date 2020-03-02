@@ -24,7 +24,6 @@
     name: "Comment",
     methods: {
       deleteComment() {
-        debugger;
         this.$store.dispatch("deleteComment", this.commentData.id);
       }
     },
