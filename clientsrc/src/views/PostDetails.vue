@@ -7,6 +7,9 @@
       <img :src="details.imgUrl" />
     </div>
     <div class="col-12 mx-auto text-center">
+      <span>{{details.creatorEmail}}</span>
+    </div>
+    <div class="col-12 mx-auto text-center">
       <div class="col-12 justify-content-end p-1"><button class="btn btn-danger"
           v-if="details.creatorEmail == activeProfile.email" @click="deletePost">Delete</button></div>
     </div>

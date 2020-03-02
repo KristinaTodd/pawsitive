@@ -4,7 +4,7 @@
       <img :src="postData.imgUrl" class="card-img-top" />
       <div class="card-body text-center">
         <h5 class="name text-info">{{postData.name}}</h5>
-        <p class="text-secondary"> {{postData.creatorEmail}}</p>
+        <p class="text-secondary">{{postData.creatorEmail}}</p>
       </div>
     </div>
   </router-link>
